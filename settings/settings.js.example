@@ -1,0 +1,34 @@
+const { client } = require("../index.js")
+module.exports = {
+
+    // SERVER SETTINGS //
+    guildName: "",
+    guildID: "",
+    ownerName: "",
+    ownerId: "",
+    guildInvite: "",
+
+
+    // CHANNELS SETTINS //
+    modLogs: "MAIN MOD-LOGS CHANNEL", //coming soon
+    boosters: "BOOSTER ANNOUNCEMENT CHANNEL",  //coming soon
+    levelsChannel: "", //ADD LEVEL CHANNEL ID FOR LEVEL ANNOUNCEMENTS
+    botLogs: "", //ADD LEVEL CHANNEL ID FOR BOT LOGS
+
+    // GIFS & IMAGES SETTINGS //
+    boosterGif: "https://i.imgur.com/SGArz37.gif",//FOR SERVER BOOSTER
+    mainGif: "",//ADD YOUR MAIN GIF
+    welcome: "https://i.imgur.com/rBKJS9Z.gif",//FOR WELCOME SYSTEM
+    goodbye: "https://i.imgur.com/nybtHtp.gif",//FOR WELCOME SYSTEM
+    levelGif: "https://i.imgur.com/kwZrxuP.gif",//FOR LEVEL SYSTEM
+
+    // CLIENT & BOT SETTINGS //
+    botOwner: "",
+    handlerVersion: "1.4.0",
+    botStatus: '', //ADD BOT STATUS
+    developers: ["DEVS NAMES WHO HELP WITH YOUR BOT"],
+    website: "", //ADD YOUR WEBSITE HERE IF YOU HAVE 1
+    botOwnerId: "",
+    supportInvite: "", //SUPPORT SERVER LINK FOR BOT OWNER
+    botInvite: `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands`
+}

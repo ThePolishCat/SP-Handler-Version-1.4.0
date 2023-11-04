@@ -262,36 +262,15 @@ module.exports = {
 
             const embed = new EmbedBuilder()
                 .setTitle("Command Details:")
-                .addField(
-                   "Command:",
-                    command.name ? `\`${command.name}\`` : "No name for this command."
-                  )
-                .addField(
-                  "Aliases:",
-                   command.aliases ?
-                    `\`${command.aliases.join("` `")}\`` :
-                    "No aliases for this command."
-                  )
-                .addField(
-                   "Usage:",
-                   command.usage ?
-                    `\`${prefix}${command.name} ${command.usage}\`` :
-                    `\`${prefix}${command.name}\``
-                  )
-                .addField(
-                   "Command Description:",
-                   command.description ?
-                    command.description :
-                    "No description for this command."
-                  )
-                .setFooter(
-                    `Requested by ${message.author.tag}`,
-                    message.author.displayAvatarURL({
-                        dynamic: true
-                    })
+                .addFields(
+                    { name: 'Command:', value: command.name ? `\`${command.name}\`` : "No name for this command." },
+                    { name: 'Aliases:', value: command.aliases ? `\`${command.aliases.join("` `")}\`` : "No aliases for this command." },
+                    { name: 'Usage:', value: command.usage ? `\`${prefix}${command.name} ${command.usage}\`` : `\`${prefix}${command.name}\`` },
+                    { name: 'Command Description:', value: command.description ? command.description : "No description for this command." }
                 )
                 .setTimestamp()
-                .setColor(ec.color);
+                .setColor(ec.color)
+                .setFooter({text: `Requested by ${message.author.tag}`, iconUrl: message.author.displayAvatarURL({dynamic: true})});
             return await message.reply({
                 embeds: [embed]
             });

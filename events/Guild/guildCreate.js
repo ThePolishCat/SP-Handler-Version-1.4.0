@@ -8,7 +8,7 @@ const set = require("../../settings/settings");
     ////////////////////////////////////////////
 
 client.on("guildCreate", async guild => {
-    let theowner = "NO OWNER DATA! ID: ";
+    let theowner = set.botOwnerId;
     await guild.fetchOwner().then(({ user }) => { theowner = user; }).catch(() => {})
     let embed = new EmbedBuilder()
       .setColor(ec.color)
