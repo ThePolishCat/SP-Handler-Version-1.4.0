@@ -40,7 +40,8 @@ module.exports = {
                 Info: "❓",
                 Levels: "🏆",
                 Moderator: "⚒️",
-                Context: "💰"
+                Context: "💰",
+                AI: "🤖"
 // emojis for the categories
             }
 
