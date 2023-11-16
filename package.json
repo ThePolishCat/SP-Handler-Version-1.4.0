@@ -18,6 +18,7 @@
     "discord.js": "^14.7.1",
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
+    "jbzd-scraper-lib": "github:ThePolishCat/jbzd-scraper-lib",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.39",
     "mongodb": "^4.8.0",
@@ -28,7 +29,6 @@
     "parse-ms": "^3.0.0",
     "pretty-ms": "^6.0.1",
     "superagent": "^8.0.0",
-    "translate-google": "^1.5.0",
     "util": "^0.12.4"
   }
 }
