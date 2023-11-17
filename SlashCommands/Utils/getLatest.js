@@ -5,8 +5,19 @@ const jbzdScraper = require("jbzd-scraper-lib");
 module.exports = {
     name: "jbzdlatest",
     description : "Get latest images from jbzd",
+    type: 1,
+    options: [
+        {
+        name: "tag",
+        description: "Tag/oczekujące jbzd",
+        type: 3,
+        required: false
+        },
+    ],
     run: async (client, interaction) => {
-        const data = await jbzdScraper.jbzdContent('', 1);
+        const { options } = interaction;
+        const tag = interaction.options.getString("tag")
+        const data = await jbzdScraper.jbzdContent(tag?tag:"", 1);
         const imageUrl = data[0].elements.find((element) => element.type === 'image')?.src;
 
         const embed = new EmbedBuilder()
