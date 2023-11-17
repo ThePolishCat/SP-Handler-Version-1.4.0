@@ -21,22 +21,22 @@ module.exports = {
         }
         const { options } = interaction;
         const tag = interaction.options.getString("tag")
-        if(!kategorie.some(kat =>kat.tag===tag)){
-            await interaction.followUp("Wrong tag provided")
+        if(!kategorie.some(kat =>kat.tag===tag)||tag =='oczekujace'){
+            const data = await jbzdScraper.jbzdContent(tag?tag:"", 1);
+            const imageUrl = data[0].elements.find((element) => element.type === 'image')?.src;
+
+            const embed = new EmbedBuilder()
+                .setColor(ec.color)
+                .setImage(imageUrl)
+                .setTimestamp()
+                .setFooter({
+                    text: `Requested by ${interaction.user.username}`,
+                    iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
+                })
+
+            await interaction.followUp({ embeds: [embed] });    
             return
         }
-        const data = await jbzdScraper.jbzdContent(tag?tag:"", 1);
-        const imageUrl = data[0].elements.find((element) => element.type === 'image')?.src;
-
-        const embed = new EmbedBuilder()
-            .setColor(ec.color)
-            .setImage(imageUrl)
-            .setTimestamp()
-            .setFooter({
-                text: `Requested by ${interaction.user.username}`,
-                iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
-              })
-
-        await interaction.followUp({ embeds: [embed] });
+        await interaction.followUp("Wrong tag provided")        
     }
 };
