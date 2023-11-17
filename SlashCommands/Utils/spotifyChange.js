@@ -21,11 +21,11 @@ module.exports = {
         if (guildConfigIndex !== -1) {
             jbzdConfig.splice(guildConfigIndex, 1);
             fs.writeFileSync(jbzdConfigPath, JSON.stringify(jbzdConfig, null, 2));
-            interaction.followUp("Removed channel from spotify move");
+            await interaction.followUp("Removed channel from spotify move");
         } else {
             jbzdConfig.push({ guild: guildID, channel: channelID });
             fs.writeFileSync(jbzdConfigPath, JSON.stringify(jbzdConfig, null, 2));
-            interaction.followUp("Added channel to spotify move");
+            await interaction.followUp("Added channel to spotify move");
         }
     }
 };

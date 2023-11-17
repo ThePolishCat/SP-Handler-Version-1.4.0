@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 const ec = require("../../settings/embed")
 const jbzdScraper = require("jbzd-scraper-lib");
+let kategorie
 
 module.exports = {
     name: "jbzdlatest",
@@ -15,8 +16,15 @@ module.exports = {
         },
     ],
     run: async (client, interaction) => {
+        if (!kategorie){
+            kategorie = await jbzdScraper.jbzdCategories();
+        }
         const { options } = interaction;
         const tag = interaction.options.getString("tag")
+        if(!kategorie.some(kat =>kat.tag===tag)){
+            await interaction.followUp("Wrong tag provided")
+            return
+        }
         const data = await jbzdScraper.jbzdContent(tag?tag:"", 1);
         const imageUrl = data[0].elements.find((element) => element.type === 'image')?.src;
 
