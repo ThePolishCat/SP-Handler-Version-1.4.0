@@ -65,7 +65,7 @@ async function checkAndSendPhotos() {
                             .setTimestamp()
 
                         channel.send({embeds:[embed]});
-                        sendphotourls.push(imageUrl);
+                        //sendphotourls.push(imageUrl);
                     }
                 }
             }
