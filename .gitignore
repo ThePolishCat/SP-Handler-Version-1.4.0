@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 settings/settings.js
 settings/config.json
+test.js
