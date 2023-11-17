@@ -10,8 +10,8 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async (client, interaction, args) => {
-        const jbzdConfigPath = 'settings/jbzd.json';
-        const jbzdConfig = require("../../settings/jbzd.json");
+        const jbzdConfigPath = 'settings/spotify.json';
+        const jbzdConfig = require("../../settings/spotify.json");
 
         const guildID = interaction.guild.id;
         const channelID = interaction.channel.id;

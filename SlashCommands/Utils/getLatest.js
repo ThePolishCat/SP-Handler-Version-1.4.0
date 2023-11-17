@@ -21,7 +21,7 @@ module.exports = {
         }
         const { options } = interaction;
         const tag = interaction.options.getString("tag")
-        if(!kategorie.some(kat =>kat.tag===tag)||tag =='oczekujace'){
+        if(kategorie.some(kat =>kat.tag===tag)||tag =='oczekujace'){
             const data = await jbzdScraper.jbzdContent(tag?tag:"", 1);
             const imageUrl = data[0].elements.find((element) => element.type === 'image')?.src;
 

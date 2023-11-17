@@ -8,7 +8,7 @@ client.on("messageCreate", async (message) => {
         return;
     }
 
-    const jbzdConfig = require("../../settings/jbzd.json");
+    const jbzdConfig = require("../../settings/spotify.json");
     if (message.content.includes("https://open.spotify.com") && jbzdConfig.some(config => config.guild === message.guild.id)) {
         const channel = jbzdConfig.find((config) => config.guild === message.guild.id)?.channel;
         const spotifyUrl = message.content.match(/https:\/\/open\.spotify\.com[^\s]*/g);
