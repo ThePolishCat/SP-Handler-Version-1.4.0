@@ -15,6 +15,7 @@
     "color": "^4.2.3",
     "common-tags": "^1.8.2",
     "discord.js": "^14.7.1",
+    "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
     "jbzd-scraper-lib": "github:ThePolishCat/jbzd-scraper-lib",
@@ -28,6 +29,7 @@
     "parse-ms": "^3.0.0",
     "pretty-ms": "^6.0.1",
     "superagent": "^8.0.0",
+    "tar": "^6.2.0",
     "util": "^0.12.4"
   }
 }
