@@ -34,12 +34,15 @@ module.exports = {
         const channelID = interaction.channel.id;
 
         const guildConfigIndex = jbzdConfig.findIndex(config => config.guild === guildID);
-        if(!kategorie.some(kat =>kat.tag===tag)&&tag !=='oczekujace'){return}
         if (guildConfigIndex !== -1) {
             jbzdConfig.splice(guildConfigIndex, 1);
             fs.writeFileSync(jbzdConfigPath, JSON.stringify(jbzdConfig, null, 2));
             await interaction.followUp("Removed channel from autojbzd");
         } else {
+            if(!kategorie.some(kat =>kat.tag===tag)&&tag !=='oczekujace'){
+                await interaction.followUp("Wrong tag provided");
+                return
+            }
             jbzdConfig.push({ guild: guildID, channel: channelID, tag: tag });
             fs.writeFileSync(jbzdConfigPath, JSON.stringify(jbzdConfig, null, 2));
             await interaction.followUp("Added channel to autojbzd");
