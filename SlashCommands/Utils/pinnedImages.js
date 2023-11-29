@@ -26,23 +26,38 @@ module.exports = {
 
         // Download and save images using Axios
         const downloadPromises = [];
+
         pinnedMessages.forEach(message => {
             message.attachments.forEach(attachment => {
                 if (attachment.contentType.startsWith('image')) {
                     const filePath = `${downloadDir}/${message.id + "_" + attachment.name}`;
-                    downloadPromises.push(axios({
+                    const downloadPromise = axios({
                         method: 'get',
                         url: attachment.url,
                         responseType: 'stream',
-                    }).then(response => {
-                        response.data.pipe(fs.createWriteStream(filePath));
-                    }));
+                    })
+                    .then(response => {
+                        return new Promise((resolve, reject) => {
+                            const fileStream = fs.createWriteStream(filePath);
+                            response.data.pipe(fileStream);
+                            fileStream.on('finish', resolve);
+                            fileStream.on('error', error => {
+                                fs.unlink(filePath, () => reject(error)); // Delete the file if there is an error
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error(`Error downloading image ${attachment.url}: ${error.message}`);
+                        // You can choose to handle the error in a way that suits your needs
+                    });
+
+                    downloadPromises.push(downloadPromise);
                 }
             });
         });
 
-        await Promise.all(downloadPromises);
-
+        await Promise.allSettled(downloadPromises);
+        await new Promise(resolve => setTimeout(resolve, 300));
         // Create a tar archive without compression
         const tarFilePath = `./downloads/images.tar`;
         await tar.create(
@@ -72,7 +87,7 @@ module.exports = {
         await interaction.followUp(`Here is the link to download the tar archive: ${fileIoLink}`);
 
         // Remove downloaded images and the tar file
-        //fs.rmSync(downloadDir, { recursive: true });
-        //fs.unlinkSync(tarFilePath);
+        fs.rmSync(downloadDir, { recursive: true });
+        fs.unlinkSync(tarFilePath);
     },
 };
