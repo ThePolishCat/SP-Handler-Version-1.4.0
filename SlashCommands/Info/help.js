@@ -77,7 +77,7 @@ module.exports = {
         .setTitle(`__**Bot Commands**__`)
         .setDescription(`\`\`\` Powered By: ${guild.name} \`\`\` \n To check out a category, use dropdown menu below. Invite our into your server if you enjoy our commands.\n\n [🔴 Invite Me Now](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands)`)
         .addFields(categories)
-        .setImage(ec.image)
+        //.setImage(ec.image)
         .setTimestamp()
         .setColor(ec.color)
 
@@ -150,10 +150,10 @@ module.exports = {
           if (cots.includes(value.toLowerCase())) {
             const combed = new EmbedBuilder()
               .setTitle(`__${value.charAt(0).toUpperCase() + value.slice(1)} Commands!__`)
-              .setDescription(`Use \`/help\`to get more information on a command.\n\n`)
+              //.setDescription(`Use \`/help\`to get more information on a command.\n\n`)
               .addFields(catts)
               .setColor(ec.color)
-              .setImage(ec.image)
+            //.setImage(ec.image)
 
             await interaction.deferUpdate();
 
@@ -235,10 +235,10 @@ module.exports = {
       if (cots.includes(args[0].toLowerCase())) {
         const combed = new EmbedBuilder()
           .setTitle(`__${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands!__`)
-          .setDescription(`Use \`/help\`to get more information on a command.\n\n`)
+          //.setDescription(`Use \`/help\`to get more information on a command.\n\n`)
           .addFields({ name: catts })
           .setColor(ec.color)
-          .setImage(ec.image)
+        //.setImage(ec.image)
 
         return interaction.followUp({
           embeds: [combed]
