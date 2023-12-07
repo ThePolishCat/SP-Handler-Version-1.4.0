@@ -1,21 +1,22 @@
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const keep_alive = require("./keep_alive.js");
 const config = require("./settings/config.json")
 const fs = require('fs');
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildEmojisAndStickers,
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildInvites,
-        GatewayIntentBits.GuildWebhooks,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildIntegrations,
-        GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildMessageReactions
-    ],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildEmojisAndStickers,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildInvites,
+    GatewayIntentBits.GuildWebhooks,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildIntegrations,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildMessageReactions
+  ],
 });
 module.exports = client;
 
@@ -25,7 +26,7 @@ client.slashCommands = new Collection();
 
 // // Initializing the project
 fs.readdirSync('./handlers').forEach((handler) => {
-    require(`./handlers/${handler}`)(client)
-  });
+  require(`./handlers/${handler}`)(client)
+});
 
 client.login(config.token);
