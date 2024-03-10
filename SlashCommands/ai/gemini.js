@@ -22,7 +22,7 @@ module.exports = {
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const text = response.text();
+    const text = response.text().catch(err => console.log(err));
 
     await interaction.followUp(text)
   }
