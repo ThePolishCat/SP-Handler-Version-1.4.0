@@ -18,5 +18,5 @@ module.exports = async (client) => {
 ║                                             ║
 ╚═════════════════════════════════════════════╝`
                                          ))
-            )
+            ).catch(err => console.log(err))
 }
