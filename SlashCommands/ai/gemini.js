@@ -21,6 +21,7 @@ module.exports = {
     const prompt = interaction.options.getString("entry")
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     const result = await model.generateContent(prompt).catch(err => console.log(err));
+    console.log(result)
     const response = await result.response;
     const text = response.text();
 
