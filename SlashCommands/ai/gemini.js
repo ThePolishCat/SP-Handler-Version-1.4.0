@@ -28,7 +28,6 @@ module.exports = {
       const text = response.text();
       if (text.length > 2000) {
         const buffer = Buffer.from(text, 'utf-8');
-        //const attachment = new MessageAttachment(buffer, 'file.txt')
         await interaction.followUp({ files: [
           { attachment: buffer, name: 'file.txt' }
         ]});
