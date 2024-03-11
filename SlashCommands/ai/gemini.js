@@ -1,4 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { MessageAttachment } = require('discord.js');
 const settings = require("../../settings/config.json");
 
 const genAI = new GoogleGenerativeAI(settings.gemini);
