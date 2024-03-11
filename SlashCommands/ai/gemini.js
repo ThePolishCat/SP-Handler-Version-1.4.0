@@ -25,7 +25,13 @@ module.exports = {
     if (!result.response.promptFeedback.blockReason) {
       const response = await result.response;
       const text = response.text();
-      await interaction.followUp(text)
+      if (text.length > 2000) {
+        const buffer = Buffer.from(text, 'utf-8');
+        const attachment = new MessageAttachment(buffer, 'text.txt');
+        await interaction.followUp({ files: [attachment] });
+      } else {
+        await interaction.followUp(text)
+      }
     }else{
       await interaction.followUp("block reason:" + result.response.promptFeedback.blockReason)
     }
