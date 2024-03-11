@@ -1,5 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const { MessagePayload } = require('discord.js');
+const { MessageAttachment } = require('discord.js');
 const settings = require("../../settings/config.json");
 
 const genAI = new GoogleGenerativeAI(settings.gemini);
@@ -28,8 +28,8 @@ module.exports = {
       const text = response.text();
       if (text.length > 2000) {
         const buffer = Buffer.from(text, 'utf-8');
-        const payload = new MessagePayload(interaction.user.id, { files: [{ name: 'generated_text.txt', content: buffer }] });
-        await interaction.followUp(payload);
+        const attachment = new MessageAttachment(buffer, 'file.txt')
+        await interaction.followUp(attachment);
       } else {
         await interaction.followUp(text)
       }
