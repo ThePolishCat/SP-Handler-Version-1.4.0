@@ -22,9 +22,14 @@ module.exports = {
     const model = genAI.getGenerativeModel({ model: "gemini-pro"});
     const result = await model.generateContent(prompt).catch(err => console.log(err));
     console.log(result)
-    const response = await result.response;
-    const text = response.text();
+    if (!result.response.promptFeedback.blockReason) {
+      const response = await result.response;
+      const text = response.text();
+      await interaction.followUp(text)
+    }else{
+      await interaction.followUp("block reason:" + result.response.promptFeedback.blockReason)
+    }
 
-    await interaction.followUp(text)
+    
   }
 };
