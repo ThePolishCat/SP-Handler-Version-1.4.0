@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const { Player, QueryType } = require("discord-player");
 const config = require("./settings/config.json")
 const fs = require('fs');
 
@@ -17,8 +18,6 @@ const client = new Client({
         GatewayIntentBits.GuildMessageReactions
     ],
 });
-module.exports = client;
-
 // // Global Variables
 client.commands = new Collection();
 client.slashCommands = new Collection();
@@ -29,3 +28,5 @@ fs.readdirSync('./handlers').forEach((handler) => {
   });
 
 client.login(config.token);
+
+module.exports = client;
